@@ -10,13 +10,15 @@ import com.example.matulebeautiful.domain.navigation.NavDestinations
 import com.example.matulebeautiful.domain.repository.AuthRepository
 import com.example.matulebeautiful.ui.base.Toaster
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.jan.supabase.compose.auth.ComposeAuth
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val repository: AuthRepository,
-    private val toaster: Toaster
+    private val toaster: Toaster,
+    val composeAuth: ComposeAuth
 ): ViewModel() {
     fun login(navController: NavController) {
         viewModelScope.launch {

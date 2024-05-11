@@ -16,15 +16,27 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.matulebeautiful.R
+import com.example.matulebeautiful.domain.navigation.NavDestinations
 import com.example.matulebeautiful.ui.theme.raleway
 import io.github.jan.supabase.compose.auth.ComposeAuth
+import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
+import io.github.jan.supabase.compose.auth.composable.rememberSignInWithGoogle
 
 @Composable
-fun GoogleButton() {
+fun GoogleButton(navController: NavController, composeAuth: ComposeAuth) {
+    val authState = composeAuth.rememberSignInWithGoogle(
+        onResult = {
+            if (it == NativeSignInResult.Success) {
+                navController.navigate(NavDestinations.Home)
+            }
+        }
+    )
+
     Button(
         onClick = {
-
+            authState.startFlow()
         },
         Modifier
             .fillMaxWidth()

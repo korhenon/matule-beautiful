@@ -142,7 +142,7 @@ fun RegisterScreen(navController: NavController, viewModel: RegisterViewModel = 
                 viewModel.register(navController)
             }
             Spacer(modifier = Modifier.height(24.dp))
-            GoogleButton()
+            GoogleButton(navController, viewModel.composeAuth)
         }
         Row(Modifier.padding(bottom = 47.dp)) {
             Text(
